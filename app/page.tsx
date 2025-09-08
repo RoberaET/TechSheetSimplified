@@ -45,7 +45,22 @@ export default function HomePage() {
     const params = new URLSearchParams()
     params.set("type", selectedDeviceType)
     if (selectedSeries) {
+      // If a leaf model is selected, include a model param so the devices page can filter down
+      const modelLeaves = new Set([
+        "S110",
+        "S220",
+        "S220S",
+        "S310",
+        "S310S",
+        "S530",
+        "S380",
+        "AR303",
+        "AR303W",
+      ])
       params.set("series", selectedSeries)
+      if (modelLeaves.has(selectedSeries)) {
+        params.set("model", selectedSeries)
+      }
     }
 
     router.push(`/devices?${params.toString()}`)

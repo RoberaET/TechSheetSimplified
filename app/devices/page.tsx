@@ -38,6 +38,7 @@ function DeviceSpecsContent() {
   const searchParams = useSearchParams()
   const deviceType = searchParams.get("type") || ""
   const series = searchParams.get("series") || ""
+  const modelParam = searchParams.get("model") || ""
 
   const [searchQuery, setSearchQuery] = useState("")
   const [filterCategory, setFilterCategory] = useState("all")
@@ -99,7 +100,11 @@ function DeviceSpecsContent() {
     return Object.values(categoryData).flat()
   }
 
-  const devices = getDevices() as Device[]
+  let devices = getDevices() as Device[]
+  // If a specific model was requested, filter to only that model
+  if (modelParam) {
+    devices = devices.filter((d) => d.model.toLowerCase().includes(modelParam.toLowerCase()) || d.name.toLowerCase().includes(modelParam.toLowerCase()))
+  }
 
   const filteredDevices = useMemo(() => {
     let filtered = devices
@@ -317,6 +322,9 @@ function DeviceSpecsContent() {
                 Detailed technical specifications for {deviceType} devices
                 {series && ` in the ${series} series`}
               </p>
+              {modelParam && (
+                <p className="text-sm text-muted-foreground mt-1">Model filter: {modelParam}</p>
+              )}
             </div>
 
             <Card className="p-6">
@@ -519,6 +527,28 @@ function DeviceSpecsContent() {
                     </CardContent>
                   </Card>
                 ))}
+                {/* Other models quick links when filtered by a model */}
+                {modelParam && (
+                  <div className="text-sm text-muted-foreground">
+                    <span>Other models in this family: </span>
+                    {(() => {
+                      const bySeries = (deviceData[deviceType] as any)[series] as Device[] | undefined
+                      const others = Array.isArray(bySeries)
+                        ? bySeries.filter((d) => d.id !== filteredDevices[0]?.id).slice(0, 5)
+                        : []
+                      return others.length > 0 ? (
+                        others.map((d, idx) => (
+                          <span key={d.id}>
+                            {idx > 0 && ", "}
+                            <a className="underline" href={`/?type=${encodeURIComponent(deviceType)}&series=${encodeURIComponent(series)}&model=${encodeURIComponent(d.model)}`}>{d.model}</a>
+                          </span>
+                        ))
+                      ) : (
+                        <span>None</span>
+                      )
+                    })()}
+                  </div>
+                )}
               </div>
             )}
           </div>
