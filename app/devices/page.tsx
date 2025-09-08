@@ -23,6 +23,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
@@ -457,8 +458,72 @@ function DeviceSpecsContent() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {Object.entries(device.specs).map(([key, value]) => {
+                      {device.id === "ekitengine-s620" ? (
+                        <div className="overflow-hidden rounded-md border">
+                          <Table className="w-full">
+                            <TableBody>
+                              <TableRow>
+                                <TableCell className="font-medium w-1/3">Product</TableCell>
+                                <TableCell>eKitEngine S620-24T16X8Y2CZ</TableCell>
+                              </TableRow>
+                              <TableRow>
+                                <TableCell className="font-medium">Model</TableCell>
+                                <TableCell>{device.model}</TableCell>
+                              </TableRow>
+                              {(() => {
+                                const s = device.specs as Record<string, string>
+                                const rows: Array<[string, string | undefined]> = [
+                                  ["Fixed port", s["fixed ports"]],
+                                  ["USB", s["usb"]],
+                                  ["Switching capacity", s["switching capacity"]],
+                                  ["Packet forwarding rate", s["packet forwarding rate"]],
+                                  ["Expansion slot", s["expansion slot"]],
+                                  ["Chassis dimensions (H x W x D)", s["chassis dimensions"]],
+                                  ["Chassis height (U)", s["chassis height"]],
+                                  ["Chassis weight (excluding packaging materials)", s["chassis weight"]],
+                                  ["Power supply type", s["power supply type"]],
+                                  ["Rated input voltage", s["rated input voltage"]],
+                                  ["Input voltage range", s["input voltage range"]],
+                                  ["Typical power consumption", s["typical power consumption"]],
+                                  ["Maximum power consumption", s["maximum power consumption"]],
+                                  ["Noise under normal temperature (sound power)", s["noise under normal temperature"]],
+                                  ["Number of power slots", s["number of power slots"]],
+                                  ["Number of fans modules", s["number of fans modules"]],
+                                  ["Types of fans", s["types of fans"]],
+                                  ["Redundant power supply", s["redundant power supply"]],
+                                  ["Long-term operating temperature", s["long-term operating temperature"]],
+                                  ["Storage temperature", s["storage temperature"]],
+                                  ["Relative humidity", s["relative humidity"]],
+                                  ["Power port surge protection", s["power port surge protection"]],
+                                  ["Heat dissipation mode", s["heat dissipation mode"]],
+                                  ["User management", s["user management"]],
+                                  ["MAC", s["mac"]],
+                                  ["VLAN", s["vlan"]],
+                                  ["IP routing", s["ip routing"]],
+                                  ["IPv6 features", s["ipv6 features"]],
+                                  ["Multicast", s["multicast"]],
+                                  ["QoS", s["qos"]],
+                                  ["Native-IP IFIT", s["native-ip ifit"]],
+                                  ["Ring Network Protection", s["ring network protection"]],
+                                  ["Reliability", s["reliability"]],
+                                  ["System Management", s["system management"]],
+                                  ["Security and Management", s["security and management"]],
+                                ]
+                                return rows
+                                  .filter(([, v]) => typeof v === "string" && v.length > 0)
+                                  .map(([label, value]) => (
+                                    <TableRow key={label}>
+                                      <TableCell className="font-medium align-top">{label}</TableCell>
+                                      <TableCell className="whitespace-pre-wrap align-top">{value as string}</TableCell>
+                                    </TableRow>
+                                  ))
+                              })()}
+                            </TableBody>
+                          </Table>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {Object.entries(device.specs).map(([key, value]) => {
                           const getSpecIcon = (specKey: string) => {
                             switch (specKey.toLowerCase()) {
                               case "display":
@@ -522,8 +587,9 @@ function DeviceSpecsContent() {
                               </div>
                             </div>
                           )
-                        })}
-                      </div>
+                          })}
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
                 ))}
