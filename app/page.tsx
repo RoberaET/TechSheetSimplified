@@ -269,7 +269,7 @@ export default function HomePage() {
                       {selectedSeries ||
                         (selectedDeviceType
                           ? selectedDeviceType === "SME"
-                            ? "Select Device Type"
+                            ? "Select Category or Series"
                             : "Select Series"
                           : "Select Device Type First")}
                     </span>
@@ -352,7 +352,10 @@ export default function HomePage() {
                   {selectedDeviceType === "SME" && (
                     <>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger
+                          onSelect={() => setSelectedSeries("Firewall")}
+                          onClick={() => setSelectedSeries("Firewall")}
+                        >
                           <div className="flex items-center space-x-2">
                             <Folder className="h-4 w-4" />
                             <span>Firewall</span>
@@ -371,7 +374,10 @@ export default function HomePage() {
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger
+                          onSelect={() => setSelectedSeries("Router")}
+                          onClick={() => setSelectedSeries("Router")}
+                        >
                           <div className="flex items-center space-x-2">
                             <Folder className="h-4 w-4" />
                             <span>Router</span>
@@ -390,7 +396,10 @@ export default function HomePage() {
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger
+                          onSelect={() => setSelectedSeries("Switches")}
+                          onClick={() => setSelectedSeries("Switches")}
+                        >
                           <div className="flex items-center space-x-2">
                             <Folder className="h-4 w-4" />
                             <span>Switches</span>
@@ -412,7 +421,10 @@ export default function HomePage() {
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger
+                          onSelect={() => setSelectedSeries("WLAN")}
+                          onClick={() => setSelectedSeries("WLAN")}
+                        >
                           <div className="flex items-center space-x-2">
                             <Folder className="h-4 w-4" />
                             <span>WLAN</span>

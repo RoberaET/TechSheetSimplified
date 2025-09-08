@@ -62,6 +62,21 @@ function DeviceSpecsContent() {
       return series ? categoryData.filter((d) => d.series === series) : categoryData
     }
 
+    // Handle SME group selections (Firewall, Router, Switches, WLAN)
+    if (deviceType === "SME" && series) {
+      const groupToSeriesMap: Record<string, string[]> = {
+        Firewall: ["USG6000E Series", "USG9500 Series", "HiSecEngine Series"],
+        Router: ["AR303", "AR303W", "Core Router"],
+        Switches: ["Core switch", "L2 Switch", "L2+ Switch", "L3 Switch"],
+        WLAN: ["Access Controller", "Access Point"],
+      }
+      const mappedSeries = groupToSeriesMap[series]
+      if (mappedSeries && !(series in (categoryData as Record<string, Device[]>))) {
+        const bySeries = categoryData as Record<string, Device[]>
+        return mappedSeries.flatMap((s) => bySeries[s] || [])
+      }
+    }
+
     if (series && series in categoryData) {
       return (categoryData as Record<string, Device[]>)[series] || []
     }
