@@ -33,6 +33,7 @@ import { useRouter } from "next/navigation"
 export default function HomePage() {
   const [selectedDeviceType, setSelectedDeviceType] = useState<string>("")
   const [selectedSeries, setSelectedSeries] = useState<string>("")
+  const [smePath, setSmePath] = useState<string[]>([])
   const router = useRouter()
 
   const handleFindDevices = () => {
@@ -187,7 +188,7 @@ export default function HomePage() {
             </div>
 
             <div className="flex gap-2">
-              <DropdownMenu>
+              <DropdownMenu onOpenChange={(open) => { if (!open) setSmePath([]) }}>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="h-12 flex-1 justify-between bg-transparent">
                     <span>{selectedDeviceType || "Select Device Type"}</span>
@@ -351,128 +352,147 @@ export default function HomePage() {
                   )}
                   {selectedDeviceType === "SME" && (
                     <>
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
-                          <div className="flex items-center space-x-2">
-                            <Folder className="h-4 w-4" />
-                            <span>Firewall</span>
-                          </div>
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuSubContent>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("USG6000E Series")} onClick={() => setSelectedSeries("USG6000E Series")}>
+                      {smePath.length === 0 && (
+                        <>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Firewall"]) }}>
+                            <div className="flex items-center space-x-2">
+                              <Folder className="h-4 w-4" />
+                              <span>Firewall</span>
+                            </div>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Router"]) }}>
+                            <div className="flex items-center space-x-2">
+                              <Folder className="h-4 w-4" />
+                              <span>Router</span>
+                            </div>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Switches"]) }}>
+                            <div className="flex items-center space-x-2">
+                              <Folder className="h-4 w-4" />
+                              <span>Switches</span>
+                            </div>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["WLAN"]) }}>
+                            <div className="flex items-center space-x-2">
+                              <Folder className="h-4 w-4" />
+                              <span>WLAN</span>
+                            </div>
+                          </DropdownMenuItem>
+                        </>
+                      )}
+
+                      {smePath[0] === "Firewall" && (
+                        <>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("USG6000E Series")}>
                             <span>USG6000E Series</span>
                           </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("USG9500 Series")} onClick={() => setSelectedSeries("USG9500 Series")}>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("USG9500 Series")}>
                             <span>USG9500 Series</span>
                           </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("HiSecEngine Series")} onClick={() => setSelectedSeries("HiSecEngine Series")}>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("HiSecEngine Series")}>
                             <span>HiSecEngine Series</span>
                           </DropdownMenuItem>
-                        </DropdownMenuSubContent>
-                      </DropdownMenuSub>
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
-                          <div className="flex items-center space-x-2">
-                            <Folder className="h-4 w-4" />
-                            <span>Router</span>
-                          </div>
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuSubContent>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("AR303")} onClick={() => setSelectedSeries("AR303")}>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath([]) }}>
+                            ← Back
+                          </DropdownMenuItem>
+                        </>
+                      )}
+
+                      {smePath[0] === "Router" && (
+                        <>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("AR303")}>
                             <span>AR303</span>
                           </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("AR303W")} onClick={() => setSelectedSeries("AR303W")}>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("AR303W")}>
                             <span>AR303W</span>
                           </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("Core Router")} onClick={() => setSelectedSeries("Core Router")}>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("Core Router")}>
                             <span>Core Router</span>
                           </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("S380")} onClick={() => setSelectedSeries("S380")}>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("S380")}>
                             <span>S380</span>
                           </DropdownMenuItem>
-                        </DropdownMenuSubContent>
-                      </DropdownMenuSub>
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
-                          <div className="flex items-center space-x-2">
-                            <Folder className="h-4 w-4" />
-                            <span>Switches</span>
-                          </div>
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuSubContent>
-                          {/* Core Switch direct */}
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("Core switch")} onClick={() => setSelectedSeries("Core switch")}>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath([]) }}>
+                            ← Back
+                          </DropdownMenuItem>
+                        </>
+                      )}
+
+                      {smePath[0] === "Switches" && smePath.length === 1 && (
+                        <>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("Core switch")}>
                             <span>Core Switch</span>
                           </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Switches","L2"]) }}>
+                            <span>L2 Switches</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Switches","L2+"]) }}>
+                            <span>L2+ Switch</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Switches","L3"]) }}>
+                            <span>L3 Switches</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath([]) }}>
+                            ← Back
+                          </DropdownMenuItem>
+                        </>
+                      )}
 
-                          {/* L2 Switches with models */}
-                          <DropdownMenuSub>
-                            <DropdownMenuSubTrigger>
-                              <div className="flex items-center space-x-2">
-                                <span>L2 Switches</span>
-                              </div>
-                            </DropdownMenuSubTrigger>
-                            <DropdownMenuSubContent>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("S110")} onClick={() => setSelectedSeries("S110")}>
-                                <span>S110</span>
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("S220")} onClick={() => setSelectedSeries("S220")}>
-                                <span>S220</span>
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("S220S")} onClick={() => setSelectedSeries("S220S")}>
-                                <span>S220S</span>
-                              </DropdownMenuItem>
-                            </DropdownMenuSubContent>
-                          </DropdownMenuSub>
+                      {smePath[0] === "Switches" && smePath[1] === "L2" && (
+                        <>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("S110")}>
+                            <span>S110</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("S220")}>
+                            <span>S220</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("S220S")}>
+                            <span>S220S</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Switches"]) }}>
+                            ← Back
+                          </DropdownMenuItem>
+                        </>
+                      )}
 
-                          {/* L2+ Switch with models */}
-                          <DropdownMenuSub>
-                            <DropdownMenuSubTrigger>
-                              <div className="flex items-center space-x-2">
-                                <span>L2+ Switch</span>
-                              </div>
-                            </DropdownMenuSubTrigger>
-                            <DropdownMenuSubContent>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("S310")} onClick={() => setSelectedSeries("S310")}>
-                                <span>S310</span>
-                              </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("S310S")} onClick={() => setSelectedSeries("S310S")}>
-                                <span>S310S</span>
-                              </DropdownMenuItem>
-                            </DropdownMenuSubContent>
-                          </DropdownMenuSub>
+                      {smePath[0] === "Switches" && smePath[1] === "L2+" && (
+                        <>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("S310")}>
+                            <span>S310</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("S310S")}>
+                            <span>S310S</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Switches"]) }}>
+                            ← Back
+                          </DropdownMenuItem>
+                        </>
+                      )}
 
-                          {/* L3 Switches with model */}
-                          <DropdownMenuSub>
-                            <DropdownMenuSubTrigger>
-                              <div className="flex items-center space-x-2">
-                                <span>L3 Switches</span>
-                              </div>
-                            </DropdownMenuSubTrigger>
-                            <DropdownMenuSubContent>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("S530")} onClick={() => setSelectedSeries("S530")}>
-                                <span>S530</span>
-                              </DropdownMenuItem>
-                            </DropdownMenuSubContent>
-                          </DropdownMenuSub>
-                        </DropdownMenuSubContent>
-                      </DropdownMenuSub>
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>
-                          <div className="flex items-center space-x-2">
-                            <Folder className="h-4 w-4" />
-                            <span>WLAN</span>
-                          </div>
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuSubContent>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("Access Controller")} onClick={() => setSelectedSeries("Access Controller")}>
+                      {smePath[0] === "Switches" && smePath[1] === "L3" && (
+                        <>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("S530")}>
+                            <span>S530</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath(["Switches"]) }}>
+                            ← Back
+                          </DropdownMenuItem>
+                        </>
+                      )}
+
+                      {smePath[0] === "WLAN" && (
+                        <>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("Access Controller")}>
                             <span>Access Controller</span>
                           </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("Access Point")} onClick={() => setSelectedSeries("Access Point")}>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("Access Point")}>
                             <span>Access Point</span>
                           </DropdownMenuItem>
-                        </DropdownMenuSubContent>
-                      </DropdownMenuSub>
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setSmePath([]) }}>
+                            ← Back
+                          </DropdownMenuItem>
+                        </>
+                      )}
                     </>
                   )}
                   {selectedDeviceType === "Storage" && (
