@@ -352,10 +352,7 @@ export default function HomePage() {
                   {selectedDeviceType === "SME" && (
                     <>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger
-                          onSelect={() => setSelectedSeries("Firewall")}
-                          onClick={() => setSelectedSeries("Firewall")}
-                        >
+                        <DropdownMenuSubTrigger>
                           <div className="flex items-center space-x-2">
                             <Folder className="h-4 w-4" />
                             <span>Firewall</span>
@@ -374,10 +371,7 @@ export default function HomePage() {
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger
-                          onSelect={() => setSelectedSeries("Router")}
-                          onClick={() => setSelectedSeries("Router")}
-                        >
+                        <DropdownMenuSubTrigger>
                           <div className="flex items-center space-x-2">
                             <Folder className="h-4 w-4" />
                             <span>Router</span>
@@ -399,10 +393,7 @@ export default function HomePage() {
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger
-                          onSelect={() => setSelectedSeries("Switches")}
-                          onClick={() => setSelectedSeries("Switches")}
-                        >
+                        <DropdownMenuSubTrigger>
                           <div className="flex items-center space-x-2">
                             <Folder className="h-4 w-4" />
                             <span>Switches</span>
@@ -467,10 +458,7 @@ export default function HomePage() {
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger
-                          onSelect={() => setSelectedSeries("WLAN")}
-                          onClick={() => setSelectedSeries("WLAN")}
-                        >
+                        <DropdownMenuSubTrigger>
                           <div className="flex items-center space-x-2">
                             <Folder className="h-4 w-4" />
                             <span>WLAN</span>
