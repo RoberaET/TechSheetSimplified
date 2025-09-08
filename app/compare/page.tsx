@@ -116,14 +116,12 @@ export default function ComparePage() {
               <p className="text-sm text-muted-foreground">Add at least two device IDs via the "ids" query param, e.g. /compare?ids=ideahub-b2,ideahub-b3</p>
             ) : (
               <div>
-                <Table className="[&_th]:max-w-[12rem] [&_th]:truncate [&_td]:max-w-[12rem] [&_td]:truncate">
+                <Table className="[&_th]:align-top [&_td]:align-top [&_th]:max-w-[16rem] [&_td]:max-w-[16rem]">
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="sticky left-0 bg-background z-10 max-w-[14rem] truncate">Specification</TableHead>
+                      <TableHead className="sticky left-0 bg-background z-10 max-w-[16rem]">Specification</TableHead>
                       {selectedDevices.map((d) => (
-                        <TableHead key={d.id} title={d.name}>
-                          {d.name}
-                        </TableHead>
+                        <TableHead key={d.id}>{d.name}</TableHead>
                       ))}
                     </TableRow>
                   </TableHeader>
@@ -132,18 +130,14 @@ export default function ComparePage() {
                       const winners = getWinnersForSpec(specKey, selectedDevices)
                       return (
                         <TableRow key={specKey}>
-                          <TableCell className="font-medium capitalize sticky left-0 bg-background z-10 max-w-[14rem] truncate" title={specKey.replace(/([A-Z])/g, " $1").trim()}>
+                          <TableCell className="font-medium capitalize sticky left-0 bg-background z-10 max-w-[16rem]">
                             {specKey.replace(/([A-Z])/g, " $1").trim()}
                           </TableCell>
                           {selectedDevices.map((d) => {
                             const raw = d.specs[specKey]
                             const isWinner = winners.has(d.id)
                             return (
-                              <TableCell
-                                key={d.id}
-                                className={isWinner ? "bg-green-100 text-foreground dark:bg-green-900/30" : undefined}
-                                title={raw ?? "-"}
-                              >
+                              <TableCell key={d.id} className={isWinner ? "bg-green-100 text-foreground dark:bg-green-900/30" : undefined}>
                                 {raw ?? "-"}
                               </TableCell>
                             )
