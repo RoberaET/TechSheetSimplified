@@ -843,7 +843,6 @@ function DeviceSpecsContent() {
                     </CardContent>
                   </Card>
                 ))}
-                )}
                 {/* Other models quick links when filtered by a model */}
                 {modelParam && (
                   <div className="text-sm text-muted-foreground">
