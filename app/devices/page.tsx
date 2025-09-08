@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useState, useMemo } from "react"
+import { Suspense, useState, useMemo, type ReactElement } from "react"
 import { useSearchParams } from "next/navigation"
 import {
   ArrowLeft,
@@ -551,7 +551,7 @@ function DeviceSpecsContent() {
                       </>
                     )
 
-                    const variantCardsMap: Record<string, JSX.Element> = {
+                    const variantCardsMap: Record<string, ReactElement> = {
                       "S110-8P2ST": variantCard("eKitEngine S110-8P2ST", [
                         ["Specifications", "eKitEngine S110-8P2ST"],
                         ["Switching capacity", "20 Gbps"],
