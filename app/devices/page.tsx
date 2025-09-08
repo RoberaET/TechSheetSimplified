@@ -70,6 +70,20 @@ function DeviceSpecsContent() {
         Switches: ["Core switch", "L2 Switch", "L2+ Switch", "L3 Switch"],
         WLAN: ["Access Controller", "Access Point"],
       }
+      // Model-to-series mapping so model-level selections show results
+      const modelToSeriesMap: Record<string, string> = {
+        S110: "L2 Switch",
+        S220: "L2 Switch",
+        S220S: "L2 Switch",
+        S310: "L2+ Switch",
+        S310S: "L2+ Switch",
+        S530: "L3 Switch",
+      }
+      if (series in modelToSeriesMap) {
+        const mapped = modelToSeriesMap[series]
+        const bySeries = categoryData as Record<string, Device[]>
+        return bySeries[mapped] || []
+      }
       const mappedSeries = groupToSeriesMap[series]
       if (mappedSeries && !(series in (categoryData as Record<string, Device[]>))) {
         const bySeries = categoryData as Record<string, Device[]>

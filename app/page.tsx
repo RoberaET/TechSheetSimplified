@@ -422,13 +422,13 @@ export default function HomePage() {
                               </div>
                             </DropdownMenuSubTrigger>
                             <DropdownMenuSubContent>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2 Switch")} onClick={() => setSelectedSeries("L2 Switch")}>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("S110")} onClick={() => setSelectedSeries("S110")}>
                                 <span>S110</span>
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2 Switch")} onClick={() => setSelectedSeries("L2 Switch")}>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("S220")} onClick={() => setSelectedSeries("S220")}>
                                 <span>S220</span>
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2 Switch")} onClick={() => setSelectedSeries("L2 Switch")}>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("S220S")} onClick={() => setSelectedSeries("S220S")}>
                                 <span>S220S</span>
                               </DropdownMenuItem>
                             </DropdownMenuSubContent>
@@ -442,10 +442,10 @@ export default function HomePage() {
                               </div>
                             </DropdownMenuSubTrigger>
                             <DropdownMenuSubContent>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2+ Switch")} onClick={() => setSelectedSeries("L2+ Switch")}>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("S310")} onClick={() => setSelectedSeries("S310")}>
                                 <span>S310</span>
                               </DropdownMenuItem>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2+ Switch")} onClick={() => setSelectedSeries("L2+ Switch")}>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("S310S")} onClick={() => setSelectedSeries("S310S")}>
                                 <span>S310S</span>
                               </DropdownMenuItem>
                             </DropdownMenuSubContent>
@@ -459,7 +459,7 @@ export default function HomePage() {
                               </div>
                             </DropdownMenuSubTrigger>
                             <DropdownMenuSubContent>
-                              <DropdownMenuItem onSelect={() => setSelectedSeries("L3 Switch")} onClick={() => setSelectedSeries("L3 Switch")}>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("S530")} onClick={() => setSelectedSeries("S530")}>
                                 <span>S530</span>
                               </DropdownMenuItem>
                             </DropdownMenuSubContent>
