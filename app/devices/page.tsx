@@ -276,7 +276,7 @@ function DeviceSpecsContent() {
     }
   }
 
-  const CategoryIcon = getCategoryIcon(deviceType)
+  const CategoryIcon = getCategoryIcon(deviceType);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
