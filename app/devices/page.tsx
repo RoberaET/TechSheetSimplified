@@ -66,7 +66,7 @@ function DeviceSpecsContent() {
     if (deviceType === "SME" && series) {
       const groupToSeriesMap: Record<string, string[]> = {
         Firewall: ["USG6000E Series", "USG9500 Series", "HiSecEngine Series"],
-        Router: ["AR303", "AR303W", "Core Router"],
+        Router: ["AR303", "AR303W", "Core Router", "S380"],
         Switches: ["Core switch", "L2 Switch", "L2+ Switch", "L3 Switch"],
         WLAN: ["Access Controller", "Access Point"],
       }

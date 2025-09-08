@@ -393,6 +393,9 @@ export default function HomePage() {
                           <DropdownMenuItem onSelect={() => setSelectedSeries("Core Router")} onClick={() => setSelectedSeries("Core Router")}>
                             <span>Core Router</span>
                           </DropdownMenuItem>
+                          <DropdownMenuItem onSelect={() => setSelectedSeries("S380")} onClick={() => setSelectedSeries("S380")}>
+                            <span>S380</span>
+                          </DropdownMenuItem>
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSub>
@@ -406,18 +409,61 @@ export default function HomePage() {
                           </div>
                         </DropdownMenuSubTrigger>
                         <DropdownMenuSubContent>
+                          {/* Core Switch direct */}
                           <DropdownMenuItem onSelect={() => setSelectedSeries("Core switch")} onClick={() => setSelectedSeries("Core switch")}>
-                            <span>Core switch</span>
+                            <span>Core Switch</span>
                           </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("L2 Switch")} onClick={() => setSelectedSeries("L2 Switch")}>
-                            <span>L2 Switch</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("L2+ Switch")} onClick={() => setSelectedSeries("L2+ Switch")}>
-                            <span>L2+ Switch</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onSelect={() => setSelectedSeries("L3 Switch")} onClick={() => setSelectedSeries("L3 Switch")}>
-                            <span>L3 Switch</span>
-                          </DropdownMenuItem>
+
+                          {/* L2 Switches with models */}
+                          <DropdownMenuSub>
+                            <DropdownMenuSubTrigger>
+                              <div className="flex items-center space-x-2">
+                                <span>L2 Switches</span>
+                              </div>
+                            </DropdownMenuSubTrigger>
+                            <DropdownMenuSubContent>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2 Switch")} onClick={() => setSelectedSeries("L2 Switch")}>
+                                <span>S110</span>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2 Switch")} onClick={() => setSelectedSeries("L2 Switch")}>
+                                <span>S220</span>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2 Switch")} onClick={() => setSelectedSeries("L2 Switch")}>
+                                <span>S220S</span>
+                              </DropdownMenuItem>
+                            </DropdownMenuSubContent>
+                          </DropdownMenuSub>
+
+                          {/* L2+ Switch with models */}
+                          <DropdownMenuSub>
+                            <DropdownMenuSubTrigger>
+                              <div className="flex items-center space-x-2">
+                                <span>L2+ Switch</span>
+                              </div>
+                            </DropdownMenuSubTrigger>
+                            <DropdownMenuSubContent>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2+ Switch")} onClick={() => setSelectedSeries("L2+ Switch")}>
+                                <span>S310</span>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("L2+ Switch")} onClick={() => setSelectedSeries("L2+ Switch")}>
+                                <span>S310S</span>
+                              </DropdownMenuItem>
+                            </DropdownMenuSubContent>
+                          </DropdownMenuSub>
+
+                          {/* L3 Switches with model */}
+                          <DropdownMenuSub>
+                            <DropdownMenuSubTrigger>
+                              <div className="flex items-center space-x-2">
+                                <span>L3 Switches</span>
+                              </div>
+                            </DropdownMenuSubTrigger>
+                            <DropdownMenuSubContent>
+                              <DropdownMenuItem onSelect={() => setSelectedSeries("L3 Switch")} onClick={() => setSelectedSeries("L3 Switch")}>
+                                <span>S530</span>
+                              </DropdownMenuItem>
+                            </DropdownMenuSubContent>
+                          </DropdownMenuSub>
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSub>

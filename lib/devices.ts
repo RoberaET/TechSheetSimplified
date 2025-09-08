@@ -272,6 +272,7 @@ export const deviceData: DeviceData = {
     AR303: [],
     AR303W: [],
     "Core Router": [],
+    S380: [],
     "Core switch": [
       {
         id: "ekitengine-s620",
