@@ -521,6 +521,89 @@ function DeviceSpecsContent() {
                             </TableBody>
                           </Table>
                         </div>
+                      ) : device.series === "L2 Switch" && device.model === "S110" ? (
+                        <div className="space-y-6">
+                          {/* eKitEngine S110-8P2ST */}
+                          <div className="overflow-hidden rounded-md border">
+                            <Table className="w-full">
+                              <TableBody>
+                                <TableRow>
+                                  <TableCell className="font-medium w-1/3">Specifications</TableCell>
+                                  <TableCell>eKitEngine S110-8P2ST</TableCell>
+                                </TableRow>
+                                <TableRow><TableCell className="font-medium">Switching capacity</TableCell><TableCell>20 Gbps</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Packet forwarding rate</TableCell><TableCell>14.88 Mpps</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Downlink port</TableCell><TableCell>8 x 10/100/1000BASE-T PoE+ ports</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Uplink port</TableCell><TableCell>1 x GE electrical port, 1 x GE SFP port</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">MAC address entry</TableCell><TableCell>2K MAC address entries</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Weight</TableCell><TableCell>0.91 kg</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Input voltage</TableCell><TableCell>54 V</TableCell></TableRow>
+                                <TableRow>
+                                  <TableCell className="font-medium">Maximum power consumption</TableCell>
+                                  <TableCell className="whitespace-pre-wrap">{`Without PoE: 11W\nWith PoE: 155 W (PoE: 124 W)`}</TableCell>
+                                </TableRow>
+                                <TableRow><TableCell className="font-medium">Long-term operating temperature</TableCell><TableCell>0°C to 40°C (0 m to 1800 m)</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Storage temperature</TableCell><TableCell>–40°C to +70°C</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Operating humidity</TableCell><TableCell>5% to 95%</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Working mode</TableCell><TableCell>Three working modes: standard mode, port isolation and flow control disabling</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Heat dissipation mode</TableCell><TableCell>Fanless, natural heat dissipation</TableCell></TableRow>
+                              </TableBody>
+                            </Table>
+                          </div>
+
+                          {/* eKitEngine S110-8T2ST */}
+                          <div className="overflow-hidden rounded-md border">
+                            <Table className="w-full">
+                              <TableBody>
+                                <TableRow>
+                                  <TableCell className="font-medium w-1/3">Specifications</TableCell>
+                                  <TableCell>eKitEngine S110-8T2ST</TableCell>
+                                </TableRow>
+                                <TableRow><TableCell className="font-medium">Switching capacity</TableCell><TableCell>20 Gbps</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Packet forwarding rate</TableCell><TableCell>14.88 Mpps</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Downlink port</TableCell><TableCell>8 x 10/100/1000BASE-T ports</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Uplink port</TableCell><TableCell>1 x GE electrical port, 1 x GE SFP port</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">MAC address entry</TableCell><TableCell>2K MAC address entries</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Weight</TableCell><TableCell>0.40 kg</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Input voltage</TableCell><TableCell>12 V</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Maximum power consumption</TableCell><TableCell>8 W</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Long-term operating temperature</TableCell><TableCell>0°C to 40°C (0 m to 1800 m)</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Storage temperature</TableCell><TableCell>–40°C to +70°C</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Operating humidity</TableCell><TableCell>5% to 95%</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Working mode</TableCell><TableCell>Three working modes: standard mode, port isolation and flow control disabling</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Heat dissipation mode</TableCell><TableCell>Fanless, natural heat dissipation</TableCell></TableRow>
+                              </TableBody>
+                            </Table>
+                          </div>
+
+                          {/* eKitEngine S110-16LP2SR */}
+                          <div className="overflow-hidden rounded-md border">
+                            <Table className="w-full">
+                              <TableBody>
+                                <TableRow>
+                                  <TableCell className="font-medium w-1/3">Specifications</TableCell>
+                                  <TableCell>eKitEngine S110-16LP2SR</TableCell>
+                                </TableRow>
+                                <TableRow><TableCell className="font-medium">Switching capacity</TableCell><TableCell>36 Gbps</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Packet forwarding rate</TableCell><TableCell>26.78 Mpps</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Downlink port</TableCell><TableCell>16 x 10/100/1000BASE-T ports</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Uplink port</TableCell><TableCell>2 x GE SFP ports</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">MAC address entry</TableCell><TableCell>8K MAC address entries</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Weight</TableCell><TableCell>3.2kg</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Input voltage</TableCell><TableCell>110 V AC to 240 V AC, 50 Hz to 60 Hz</TableCell></TableRow>
+                                <TableRow>
+                                  <TableCell className="font-medium">Maximum power consumption</TableCell>
+                                  <TableCell className="whitespace-pre-wrap">{`Without PoE: 22W\nWith PoE:146W (PoE: 124 W)`}</TableCell>
+                                </TableRow>
+                                <TableRow><TableCell className="font-medium">Long-term operating temperature</TableCell><TableCell>0°C to 45°C (0 m to 1800 m)</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Storage temperature</TableCell><TableCell>–40°C to +70°C</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Operating humidity</TableCell><TableCell>5% to 95%</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Working mode</TableCell><TableCell>Four working modes: standard mode, port isolation, port bonding, and flow control disabling</TableCell></TableRow>
+                                <TableRow><TableCell className="font-medium">Heat dissipation mode</TableCell><TableCell>Fanless, natural heat dissipation</TableCell></TableRow>
+                              </TableBody>
+                            </Table>
+                          </div>
+                        </div>
                       ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                           {Object.entries(device.specs).map(([key, value]) => {
