@@ -443,7 +443,174 @@ function DeviceSpecsContent() {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
-                {filteredDevices.map((device) => (
+                {modelParam === "S110" ? (
+                  (() => {
+                    const selectedVariant = (searchParams.get("variant") || "S110-8P2ST").toUpperCase()
+                    const goTo = (variant: string) => {
+                      const params = new URLSearchParams(Array.from(searchParams.entries()))
+                      params.set("variant", variant)
+                      window.location.href = `/devices?${params.toString()}`
+                    }
+
+                    const variantCard = (title: string, rows: Array<[string, string]>) => (
+                      <Card key={title} className="overflow-hidden">
+                        <CardHeader>
+                          <div className="flex items-start justify-between">
+                            <div>
+                              <CardTitle className="text-2xl">{title}</CardTitle>
+                              <CardDescription className="text-lg mt-1">Model: {title.split(" ")[2]}</CardDescription>
+                            </div>
+                            <div className="flex flex-col items-end space-y-2">
+                              <Badge variant="secondary">SME</Badge>
+                              <Badge variant="outline">L2 Switch</Badge>
+                            </div>
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="overflow-hidden rounded-md border">
+                            <Table className="w-full">
+                              <TableBody>
+                                {rows.map(([k, v]) => (
+                                  <TableRow key={k}>
+                                    <TableCell className="font-medium w-1/3 align-top">{k}</TableCell>
+                                    <TableCell className="whitespace-pre-wrap align-top">{v}</TableCell>
+                                  </TableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )
+
+                    const commonTop = (
+                      <div className="flex justify-end">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="outline" className="bg-transparent">Select S110 Model</Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem onSelect={() => goTo("S110-8P2ST")}>S110-8P2ST</DropdownMenuItem>
+                            <DropdownMenuItem onSelect={() => goTo("S110-8T2ST")}>S110-8T2ST</DropdownMenuItem>
+                            <DropdownMenuItem onSelect={() => goTo("S110-16LP2SR")}>S110-16LP2SR</DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
+                    )
+
+                    const cardsAll = (
+                      <>
+                        {variantCard("eKitEngine S110-8P2ST", [
+                          ["Specifications", "eKitEngine S110-8P2ST"],
+                          ["Switching capacity", "20 Gbps"],
+                          ["Packet forwarding rate", "14.88 Mpps"],
+                          ["Downlink port", "8 x 10/100/1000BASE-T PoE+ ports"],
+                          ["Uplink port", "1 x GE electrical port, 1 x GE SFP port"],
+                          ["MAC address entry", "2K MAC address entries"],
+                          ["Weight", "0.91 kg"],
+                          ["Input voltage", "54 V"],
+                          ["Maximum power consumption", "Without PoE: 11W\nWith PoE: 155 W (PoE: 124 W)"],
+                          ["Long-term operating temperature", "0°C to 40°C (0 m to 1800 m)"],
+                          ["Storage temperature", "–40°C to +70°C"],
+                          ["Operating humidity", "5% to 95%"],
+                          ["Working mode", "Three working modes: standard mode, port isolation and flow control disabling"],
+                          ["Heat dissipation mode", "Fanless, natural heat dissipation"],
+                        ])}
+                        {variantCard("eKitEngine S110-8T2ST", [
+                          ["Specifications", "eKitEngine S110-8T2ST"],
+                          ["Switching capacity", "20 Gbps"],
+                          ["Packet forwarding rate", "14.88 Mpps"],
+                          ["Downlink port", "8 x 10/100/1000BASE-T ports"],
+                          ["Uplink port", "1 x GE electrical port, 1 x GE SFP port"],
+                          ["MAC address entry", "2K MAC address entries"],
+                          ["Weight", "0.40 kg"],
+                          ["Input voltage", "12 V"],
+                          ["Maximum power consumption", "8 W"],
+                          ["Long-term operating temperature", "0°C to 40°C (0 m to 1800 m)"],
+                          ["Storage temperature", "–40°C to +70°C"],
+                          ["Operating humidity", "5% to 95%"],
+                          ["Working mode", "Three working modes: standard mode, port isolation and flow control disabling"],
+                          ["Heat dissipation mode", "Fanless, natural heat dissipation"],
+                        ])}
+                        {variantCard("eKitEngine S110-16LP2SR", [
+                          ["Specifications", "eKitEngine S110-16LP2SR"],
+                          ["Switching capacity", "36 Gbps"],
+                          ["Packet forwarding rate", "26.78 Mpps"],
+                          ["Downlink port", "16 x 10/100/1000BASE-T ports"],
+                          ["Uplink port", "2 x GE SFP ports"],
+                          ["MAC address entry", "8K MAC address entries"],
+                          ["Weight", "3.2kg"],
+                          ["Input voltage", "110 V AC to 240 V AC, 50 Hz to 60 Hz"],
+                          ["Maximum power consumption", "Without PoE: 22W\nWith PoE:146W (PoE: 124 W)"],
+                          ["Long-term operating temperature", "0°C to 45°C (0 m to 1800 m)"],
+                          ["Storage temperature", "–40°C to +70°C"],
+                          ["Operating humidity", "5% to 95%"],
+                          ["Working mode", "Four working modes: standard mode, port isolation, port bonding, and flow control disabling"],
+                          ["Heat dissipation mode", "Fanless, natural heat dissipation"],
+                        ])}
+                      </>
+                    )
+
+                    const variantCardsMap: Record<string, JSX.Element> = {
+                      "S110-8P2ST": variantCard("eKitEngine S110-8P2ST", [
+                        ["Specifications", "eKitEngine S110-8P2ST"],
+                        ["Switching capacity", "20 Gbps"],
+                        ["Packet forwarding rate", "14.88 Mpps"],
+                        ["Downlink port", "8 x 10/100/1000BASE-T PoE+ ports"],
+                        ["Uplink port", "1 x GE electrical port, 1 x GE SFP port"],
+                        ["MAC address entry", "2K MAC address entries"],
+                        ["Weight", "0.91 kg"],
+                        ["Input voltage", "54 V"],
+                        ["Maximum power consumption", "Without PoE: 11W\nWith PoE: 155 W (PoE: 124 W)"],
+                        ["Long-term operating temperature", "0°C to 40°C (0 m to 1800 m)"],
+                        ["Storage temperature", "–40°C to +70°C"],
+                        ["Operating humidity", "5% to 95%"],
+                        ["Working mode", "Three working modes: standard mode, port isolation and flow control disabling"],
+                        ["Heat dissipation mode", "Fanless, natural heat dissipation"],
+                      ]),
+                      "S110-8T2ST": variantCard("eKitEngine S110-8T2ST", [
+                        ["Specifications", "eKitEngine S110-8T2ST"],
+                        ["Switching capacity", "20 Gbps"],
+                        ["Packet forwarding rate", "14.88 Mpps"],
+                        ["Downlink port", "8 x 10/100/1000BASE-T ports"],
+                        ["Uplink port", "1 x GE electrical port, 1 x GE SFP port"],
+                        ["MAC address entry", "2K MAC address entries"],
+                        ["Weight", "0.40 kg"],
+                        ["Input voltage", "12 V"],
+                        ["Maximum power consumption", "8 W"],
+                        ["Long-term operating temperature", "0°C to 40°C (0 m to 1800 m)"],
+                        ["Storage temperature", "–40°C to +70°C"],
+                        ["Operating humidity", "5% to 95%"],
+                        ["Working mode", "Three working modes: standard mode, port isolation and flow control disabling"],
+                        ["Heat dissipation mode", "Fanless, natural heat dissipation"],
+                      ]),
+                      "S110-16LP2SR": variantCard("eKitEngine S110-16LP2SR", [
+                        ["Specifications", "eKitEngine S110-16LP2SR"],
+                        ["Switching capacity", "36 Gbps"],
+                        ["Packet forwarding rate", "26.78 Mpps"],
+                        ["Downlink port", "16 x 10/100/1000BASE-T ports"],
+                        ["Uplink port", "2 x GE SFP ports"],
+                        ["MAC address entry", "8K MAC address entries"],
+                        ["Weight", "3.2kg"],
+                        ["Input voltage", "110 V AC to 240 V AC, 50 Hz to 60 Hz"],
+                        ["Maximum power consumption", "Without PoE: 22W\nWith PoE:146W (PoE: 124 W)"],
+                        ["Long-term operating temperature", "0°C to 45°C (0 m to 1800 m)"],
+                        ["Storage temperature", "–40°C to +70°C"],
+                        ["Operating humidity", "5% to 95%"],
+                        ["Working mode", "Four working modes: standard mode, port isolation, port bonding, and flow control disabling"],
+                        ["Heat dissipation mode", "Fanless, natural heat dissipation"],
+                      ]),
+                    }
+
+                    return (
+                      <>
+                        {commonTop}
+                        {variantCardsMap[selectedVariant] || cardsAll}
+                      </>
+                    )
+                  })()
+                ) : (
+                filteredDevices.map((device) => (
                   <Card key={device.id} className="overflow-hidden">
                     <CardHeader>
                       <div className="flex items-start justify-between">
@@ -605,8 +772,8 @@ function DeviceSpecsContent() {
                           </div>
                         </div>
                       ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                          {Object.entries(device.specs).map(([key, value]) => {
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {Object.entries(device.specs).map(([key, value]) => {
                           const getSpecIcon = (specKey: string) => {
                             switch (specKey.toLowerCase()) {
                               case "display":
@@ -670,12 +837,13 @@ function DeviceSpecsContent() {
                               </div>
                             </div>
                           )
-                          })}
-                        </div>
+                        })}
+                      </div>
                       )}
                     </CardContent>
                   </Card>
                 ))}
+                )}
                 {/* Other models quick links when filtered by a model */}
                 {modelParam && (
                   <div className="text-sm text-muted-foreground">
