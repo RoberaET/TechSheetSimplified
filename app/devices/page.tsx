@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useState, useMemo, type ReactElement } from "react"
+import { Suspense, useState, useMemo } from "react"
 import { useSearchParams } from "next/navigation"
 import {
   ArrowLeft,
@@ -278,7 +278,7 @@ function DeviceSpecsContent() {
 
   const CategoryIcon = getCategoryIcon(deviceType);
 
-  function renderS110(): ReactElement {
+  function renderS110(): JSX.Element {
     const selectedVariant = (searchParams.get("variant") || "S110-8P2ST").toUpperCase()
     const goTo = (variant: string) => {
       const params = new URLSearchParams(Array.from(searchParams.entries()))
@@ -385,7 +385,7 @@ function DeviceSpecsContent() {
       </>
     )
 
-    const variantCardsMap: Record<string, ReactElement> = {
+    const variantCardsMap: Record<string, JSX.Element> = {
       "S110-8P2ST": variantCard("eKitEngine S110-8P2ST", [
         ["Specifications", "eKitEngine S110-8P2ST"],
         ["Switching capacity", "20 Gbps"],
